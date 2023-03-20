@@ -24,13 +24,25 @@ std::string circShiftRight(std::string sample, int shift);
 std::string circShiftLeft(std::string sample, int shift);
 
 
+/**
+ * Generates the Vigenere Cipher Table
+ * @return Vigenere Cipher Table
+*/
+char** generateVigenereCipherTable();
+
+/**
+ * Prints a 2D array
+*/
+template<typename T>
+void print2DArray(T** array, int rows, int columns);
+
+
 int main(int argc, char** argv) {
 
-    std::string numbers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    char** vigenereTable = generateVigenereCipherTable();
 
-    for(int j = 0; j < LETTERS; j++) {
-        std::cout << circShiftLeft(numbers, j) << std::endl;
-    }
+    // Print the table
+    print2DArray(vigenereTable, LETTERS, LETTERS);
 
     return 0;
 }
@@ -81,4 +93,35 @@ std::string circShiftLeft(std::string sample, int shift) {
     }
 
     return sample;
+}
+
+char** generateVigenereCipherTable() {
+    // The alphabets which would be used in encryption
+    const std::string alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // The table to store the cipher table
+    char** vigenereTable = new char*[LETTERS];
+
+    // Iterate over the table and add the row
+    for(int i = 0; i < LETTERS; i++) {
+        // Add a row
+        vigenereTable[i] = new char[LETTERS];
+
+        int j = 0;
+        for(const char c: circShiftLeft(alphabets, i)) {
+            vigenereTable[i][j] = c;
+            j++;
+        }
+    }
+    return vigenereTable;
+}
+
+template<typename T>
+void print2DArray(T** array, int rows, int columns) {
+    for(int j = 0; j < rows; j++) {
+        std::cout << "[ ";
+        for(int i = 0; i < columns; i++) {
+            std::cout << array[j][i] << " ";
+        }
+        std::cout << "]\n";
+    }
 }
