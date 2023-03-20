@@ -1,9 +1,12 @@
 #include <iostream>
 #include <unordered_map>
+#include "vigenereCipherTable.cpp"
 
 int main(int argc, char** argv) {
 
-    std::cout << "Hello World" << std::endl;
+    char** vigenereTable = generateVigenereCipherTable();
+
+    print2DArray(vigenereTable, LETTERS, LETTERS);
 
     return 0;
 }
