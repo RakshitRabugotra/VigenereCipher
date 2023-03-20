@@ -27,9 +27,9 @@ inline void toUppercase(std::string string);
 
 /**
  * Checks whether the value is in given range
- * @param value
- * @param low
- * @param high
+ * @param value the value to check
+ * @param low the lower bound for that value
+ * @param high the upper bound for that value
  * @return true, if low <= value < high, else false
 */
 bool isWithin(int value, int low, int high);
