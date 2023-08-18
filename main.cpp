@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <conio.h>
 #include "vigenereCipherTable.cpp"
 
 
@@ -37,14 +38,25 @@ bool isWithin(int value, int low, int high);
 
 int main(int argc, char** argv) {
 
-    std::string sampleText = "VERSAILLES";
-    std::string key = "CHEESE";
+    // std::string sampleText = "VERSAILLES";
+    // std::string key = "CHEESE";
+
+    std::string sampleText, key;
+
+    std::cout << "Enter the key: ";
+    getline(std::cin, key);
+
+    std::cout << "Enter the text to encrypt: ";
+    getline(std::cin, sampleText); 
 
     std::string encryptedText = encrypt(sampleText, key);
     std::cout << "Encrypted text: " << encryptedText << std::endl;
 
     std::string decryptedText = decrypt(encryptedText, key);
     std::cout << "Decrypted text: " << decryptedText << std::endl;
+
+    std::cout << "Press <ENTER> to continue...\n";
+    getch();
 
     return 0;
 }
